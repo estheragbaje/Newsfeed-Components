@@ -132,15 +132,19 @@ const data = [
 */
 
 function articleMaker(data) {
+  //creating the div element called article
   const article = document.createElement("div");
+  //adding the article class to the div
   article.classList.add("article");
 
+  //creating elements
   const title = document.createElement("h2");
   const date = document.createElement("p");
   const p1 = document.createElement("p");
   const p2 = document.createElement("p");
   const p3 = document.createElement("p");
 
+  //assiging text content to each key value in the object
   title.textContent = data.title;
   date.textContent = data.date;
   p1.textContent = data.firstParagraph;
@@ -149,15 +153,18 @@ function articleMaker(data) {
 
   date.classList.add("date");
 
+  //creating a span element with the classlist expandbutton
   const span = document.createElement("span");
   span.textContent = "toggle";
   span.classList.add("expandButton");
 
+  //adding event listener to the span using the toggle method on the classlist
   span.addEventListener("click", e => {
     const div = document.querySelector(".article");
     div.classList.toggle("article-open");
   });
 
+  //appending the new elements created to the article div
   article.appendChild(title);
   article.appendChild(date);
   article.appendChild(p1);
@@ -170,7 +177,9 @@ function articleMaker(data) {
 }
 
 const divArticle = document.querySelector(".articles");
-data.forEach(item => {
+
+//mapping over each object to use the article maker component
+data.map(item => {
   const article = articleMaker(item);
   divArticle.appendChild(article);
 });
